@@ -1,0 +1,16 @@
+.vs/
+*.o
+*.s
+*.i
+*.a
+*.so.*
+.idea/
+compile_commands.json
+*.log
+bin/
+lib/
+objs/
+librbtree.so.0.0
+*.d
+test/rbshell/test
+!/Makefile
