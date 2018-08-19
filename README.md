@@ -26,6 +26,9 @@ To optimize:
 make opt='-O3' all
 ```
 
+At the end of the compilation, you will find objects files in `objs`, libraries 
+in `lib` and, in future versions, binaries in `bin`.
+
 ## Installation
 
 You can edit `Makefile` and change the `PREFIX` value. The best way to do it is 
