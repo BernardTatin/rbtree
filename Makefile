@@ -5,18 +5,28 @@
 #======================================================================
 
 PREFIX ?= ${HOME}
+VERSION ?= debug
 
 src = $(wildcard src/*.c)
 obj = $(addprefix objs/,$(notdir $(src:.c=.o)))
 dep = $(obj:.o=.d)
-dbg ?=
-opt ?=
+
+
+dbg = -g1
+opt = -O1
+ifeq ($(VERSION), debug)
+dbg = -g
+opt =
+else ifeq ($(VERSION), release)
+dbg =
+opt = -O3
+endif
 
 name = rbtree
 
 AR = ar
 CC = gcc
-CFLAGS = -pedantic -Wall $(dbg) $(opt) -fPIC -std=c11
+CFLAGS = -pedantic -Wall -Wextra $(dbg) $(opt) -fPIC -std=c11
 
 ifeq ($(shell uname -s), Darwin)
 	lib_a = lib/lib$(name).a

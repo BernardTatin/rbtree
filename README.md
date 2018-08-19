@@ -17,13 +17,13 @@ of the `Makefile` to fit my needs.
 To debug:
 
 ```bash
-make dbg='-g' all
+make version=debug clean all
 ```
 
 To optimize:
 
 ```bash
-make opt='-O3' all
+make version=release clean all
 ```
 
 At the end of the compilation, you will find objects files in `objs`, libraries 
