@@ -1,7 +1,8 @@
 \.o$
 \.d$
 \.swp$
-^Makefile$
+^configure$
+^Makefile\.in$
 rbtree\.a$
 rbtree\.so
 ^test/.*test$
