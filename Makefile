@@ -9,7 +9,7 @@ VERSION ?= debug
 
 src = $(wildcard src/*.c)
 obj = $(addprefix objs/,$(notdir $(src:.c=.o)))
-dep = $(obj:.o=.d)
+dep = $(addprefix objs/,$(notdir $(src:.c=.d)))
 
 
 dbg = -g1
@@ -41,7 +41,7 @@ else
 endif
 
 .PHONY: all
-all: dirs $(lib_so) $(lib_a)
+all: $(dep) dirs $(lib_so) $(lib_a)
 
 .PHONY: dirs
 dirs: bin lib objs
@@ -59,18 +59,18 @@ $(lib_a): $(obj)
 $(lib_so): $(obj)
 	$(CC) -o $@ $(shared) $(obj) $(LDFLAGS)
 
--include $(dep)
-
 objs/%.o: src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-%.d: %.c
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:.d=.o) >$@
+objs/%.d: src/%.c objs
+	@echo "$(CFLAGS) $< -MM -MT $(@:.d=.o) >$@"
+	$(CPP) $(CFLAGS) $< -MM -MT $(@:.d=.o) >$@
+
+-include $(dep)
 
 .PHONY: clean
 clean:
 	rm -fv $(obj) $(lib_a) $(lib_so)
-	rm -fvR lib bin objs
 
 .PHONY: install
 install: all
