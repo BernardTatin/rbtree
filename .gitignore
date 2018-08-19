@@ -10,7 +10,6 @@ compile_commands.json
 bin/
 lib/
 objs/
-librbtree.so.0.0
 *.d
 test/rbshell/test
 !/Makefile
