@@ -9,4 +9,31 @@ the terms of the 3-clause BSD license. See `COPYING` for details.
 
 # Note about this fork
 
-First a big refactoring of the `Makefile`.
+First, no more `configure` or `Makefile.in`. Second,  a big refactoring 
+of the `Makefile` to fit my needs.
+
+## Compilation 
+
+To debug:
+
+```bash
+make dbg='-g' all
+```
+
+To optimize:
+
+```bash
+make opt='-O3' all
+```
+
+## Installation
+
+You can edit `Makefile` and change the `PREFIX` value. The best way to do it is 
+by using the command line:
+
+```bash
+make PREFIX=/usr/local install
+make PREFIX=/usr/local uninstall
+```
+
+
